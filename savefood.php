@@ -30,7 +30,7 @@ $perPersonPay = $price / $countPay;       //ราคาที่คนนั้
 echo "perPersonPay :".$perPersonPay;      //ราคาต่อคน
 echo "<br />";
 
-foreach ($payPerson as $value) {
+foreach ($payPerson as $value) {          //loop จนกว่า arrayจะหมด
 
   $sql = "SELECT * FROM user WHERE id = '$value' ";
   $result = $conn->query($sql);
