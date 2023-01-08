@@ -15,10 +15,10 @@
     
 <main class="form-signin w-100 m-auto">  <!-- กำหนดความกว้าง100 ขยับให้อยุ่กลางตลอด -->
     <br />
-  <form method="POST" action="saveuser.php">  <!-- -->
+  <form method="POST" action="saveuser.php">  <!-- กรอกข้อมูลเข้าdatabase -->
     <h3 class=" mb-3 fw-normal">Who's pay</h3>  
     <div class="row justify-content-md-center">    
-        <div class="col-md-6">                    <!-- ช่องคนหาร กรอกข้อมูลเข้าdatabase -->
+        <div class="col-md-6">                    <!-- ช่องคนหาร -->
             <div class="form-floating">
             <input type="text" class="form-control" id="txtname" name="txtname" placeholder="name">
             <label for="floatingInput">Name</label>
@@ -32,7 +32,7 @@
   
   <?php 
     $idx = 0;
-    $sql = "SELECT * FROM user";   
+    $sql = "SELECT * FROM user";              //ดึงข้อมูลจากdatabase
     $result = $conn->query($sql);  
     while($row = $result->fetch_assoc()) {
 
@@ -51,10 +51,10 @@
 
     <br />
     
-    <form method="POST" action="savefood.php">
+    <form method="POST" action="savefood.php">        <!-- กรอกข้อมูลเข้าdatabase -->
     <h3 class="mb-3 fw-normal">What you pay</h3>
     <div class="row justify-content-md-center">    
-        <div class="col-md-6">                     <!-- ช่องสิ่งที่หาร กรอกข้อมูลเข้าdatabase -->
+        <div class="col-md-6">                     <!-- ช่องสิ่งที่หาร -->
             <div class="form-floating">
             <input type="text" class="form-control" id="foodname" name="foodname" placeholder="foodname" >
             <label for="foodname">Name</label>
@@ -66,16 +66,17 @@
             
             <?php
               $idx = 0;
-              $sql = "SELECT * FROM user";
+              $sql = "SELECT * FROM user";          //ดึงข้อมูลจากdatabase
               $result = $conn->query($sql);
               while($row = $result->fetch_assoc()) { 
                 $idx++;
             ?>
               <div class="form-floating">
-              <input type="checkbox" id="user<?php echo $idx; ?>" name="user<?php echo $idx; ?>" value="<?php echo $row["id"]; ?>"> <?php echo $row["firstname"]; ?> </label>
+              <input type="checkbox" id="user<?php echo $idx; ?>" name="user<?php echo $idx; ?>" value="<?php echo $row["id"]; ?>"> <?php echo $row["firstname"]; ?> </label>         <!--ดึงตัวเลือกคนจ่ายมาจาก database-->
+                                        <!-- ไม่fixเลยใช้ php echo สิ่งที่เรากรอกเว็บ id จะได้ไม่ fix -->
               </div>
             <?php } ?>
-            <input type="hidden" class="form-control" id="totaluser" name="totaluser" value="<?php echo $idx; ?>">
+            <input type="hidden" class="form-control" id="totaluser" name="totaluser" value="<?php echo $idx; ?>">    <!--echoจำนวนคนออกมาดูเพื่อที่จะได้วนลูปเช้ค-->
             <br />
             <button class="w-100 btn btn-lg btn-primary" type="submit">Save</button>
         </div>
@@ -85,11 +86,11 @@
 
   <?php 
    $idx = 0;
-  $sql = "SELECT * FROM food";
+  $sql = "SELECT * FROM food";                    //ดึงข้อมูลจากdatabase
     $result = $conn->query($sql);
     while($row = $result->fetch_assoc()) {
       $idx++;
-        echo "<a href='delmenu.php?id=".$row["Id"]."'>[ลบ]</a> id: " . $idx. " - Name: " . $row["Food_name"]. " " . $row["Price"]. " - " . $row["Person"]. "<br>";
+        echo "<a href=  'delmenu.php?id=".$row["Id"]." '  >[ลบ]</a> id: " . $idx. " - Name: " . $row["Food_name"]. " " . $row["Price"]. " - " . $row["Person"]. "<br>"; //แสดงว่าอันนี้ใครหารบ้าง
     }
     ?>
     <br />
@@ -97,4 +98,3 @@
 
 </body>
 </html>
-

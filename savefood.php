@@ -9,10 +9,10 @@ $totaluser = $_POST['totaluser'];
 $payPerson = [];            //สร้างarrayมาเก็บว่ามีใครหารบ้าง
 
 for ($i=1;$i<=$totaluser;$i++) {
-  $field = "user".$i;
+  $field = "user".$i;       
   $valField =  $_POST[$field];
 
-  if ($valField != "") {
+  if ($valField != "") {    //ถ้าค่าไม่ไม่เท่ากับค่าว่าง(แสดงว่าถูกติ้ก)ให้เพิ่ม
     $payPerson[] = $valField;
   }
 }
@@ -32,7 +32,7 @@ echo "<br />";
 
 foreach ($payPerson as $value) {          //loop จนกว่า arrayจะหมด
 
-  $sql = "SELECT * FROM user WHERE id = '$value' ";
+  $sql = "SELECT * FROM user WHERE id = '$value' ";   //ดึงข้อมูลจากdatabase
   $result = $conn->query($sql);
   $row = $result->fetch_assoc();
   $arrName[] =  $row['firstname'];

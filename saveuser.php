@@ -1,5 +1,5 @@
 <?php
- include("sys/connect.php");
+ include("sys/connect.php");            //
 
 $txtname = $_POST['txtname'];
 
